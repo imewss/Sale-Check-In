@@ -26,7 +26,7 @@ namespace APITemplate
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCustomSwagger(_configuration);
+            services.AddCustomSwagger();
 
             // regis logger
             services.AddSingleton<ILoggerService, LoggerService>();

@@ -11,12 +11,7 @@ namespace APITemplate.Extensions
 {
     public static class SwaggerExtension
     {
-        /// <summary>
-        /// Adds the custom swagger.
-        /// </summary>
-        /// <param name="services">The services.</param>
-        /// <param name="configuration">Configuration file</param>
-        public static void AddCustomSwagger(this IServiceCollection services, IConfiguration configuration)
+        public static void AddCustomSwagger(this IServiceCollection services)
         {
            
             services.AddSwaggerGen(c =>
@@ -32,11 +27,6 @@ namespace APITemplate.Extensions
             });
         }
 
-        /// <summary>
-        /// User custom middleware to serve generated Swagger as a JSON endpoint. And Enable middleware to serve swagger-ui
-        /// </summary>
-        /// <param name="app">Application param</param>
-        /// <param name="configuration">Configuration file</param>
         public static void UseCustomerSwagger(this IApplicationBuilder app, IConfiguration configuration)
         {
             // Enable middleware to serve generated Swagger as a JSON endpoint.
