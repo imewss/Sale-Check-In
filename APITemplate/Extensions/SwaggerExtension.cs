@@ -46,7 +46,7 @@ namespace APITemplate.Extensions
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("../swagger/v1/swagger.json", "Pay Society Sample Service/Gateway");
+                c.SwaggerEndpoint("../swagger/v1/swagger.json", "Sample Service/Gateway");
             });
         }
     }
