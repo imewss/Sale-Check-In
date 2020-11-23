@@ -1,0 +1,116 @@
+<div class="main-container">
+  <!-- logo section -->
+  <div class="p-grid p-justify-between">
+    <img src="../../assets/images/INLINE-LOGO-01.png" style="width: 100%; align-content: center;">
+  </div>
+  <div style="text-align: center;">
+    <span style="color:gray; font-weight: 400; font-size: x-large;">
+      ระบบเช็คอิน
+    </span>
+  </div>
+
+  <!-- upload file section  -->
+  <div style="text-align:center">
+    <!-- <div class="empty-img-box" *ngIf="!isImage">
+    </div> -->
+    <div style="padding-top: 30px;">
+      <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+      <div><img [src]="url" *ngIf="url" style="width: 50%;"></div>
+
+      <!-- <span>Upload Picture</span> -->
+      <input style="align-items: center;" type="file" (change)="selectFile($event)">
+    </div>
+  </div>
+
+  <!-- Form Section  -->
+  <form [formGroup]="checkInForm" style="padding-top: 30px;">
+
+    <!-- shop name / customer name  -->
+    <div class="p-field p-grid">
+      <label for="name" class="p-col-fixed" style="width:150px;">ชื่อร้านค้า/ลูกค้า</label>
+      <div class="p-col">
+        <input id="name" type="text" formControlName="name" pInputText style="width: 100%;" autocomplete="off">
+      </div>
+    </div>
+    <!-- shop type  -->
+    <div class="p-field p-grid">
+      <label for="shopType" class="p-col-fixed" style="width:150px;">ประเภทร้านค้า</label>
+      <div class="p-col">
+        <p-dropdown id="shopType" [options]="shopTypeSelectItems" formControlName="shopType" placeholder="&shy;"
+          optionLabel="label" [showClear]="true" autoWidth="false" [style]="{ width: '100%' }">
+        </p-dropdown>
+      </div>
+    </div>
+
+    <!-- customer type  -->
+    <div class="p-formgroup-inline">
+      <div class="p-field" style="width:150px;">
+        <span>ประเภทลูกค้า</span>
+      </div>
+      <div class="p-field">
+        <p-radioButton name="customerType" value="ลูกค้าเก่า" label="ลูกค้าเก่า" formControlName="customerType">
+        </p-radioButton>
+      </div>
+      <div class="p-field">
+        <p-radioButton name="customerType" value="ลูกค้าใหม่" label="ลูกค้าใหม่" formControlName="customerType">
+        </p-radioButton>
+      </div>
+    </div>
+
+    <!-- Province  -->
+    <div class="p-field p-grid">
+      <label for="province" class="p-col-fixed" style="width:150px;">จังหวัด</label>
+      <div class="p-col">
+        <p-dropdown id="province" [options]="provinceSelectItems" formControlName="province" placeholder="&shy;"
+          optionLabel="label" [showClear]="true" autoWidth="false" [style]="{ width: '100%' }">
+        </p-dropdown>
+      </div>
+    </div>
+
+    <!-- District -->
+    <div class="p-field p-grid">
+      <label for="district" class="p-col-fixed" style="width:150px;">อำเภอ</label>
+      <div class="p-col">
+        <p-dropdown id="district" [options]="districtSelectItems" formControlName="district" placeholder="&shy;"
+          optionLabel="label" [showClear]="true" autoWidth="false" [style]="{ width: '100%' }">
+        </p-dropdown>
+      </div>
+    </div>
+
+    <!-- Sub-district -->
+    <div class="p-field p-grid">
+      <label for="subDistrict" class="p-col-fixed" style="width:150px;">ตำบล</label>
+      <div class="p-col">
+        <p-dropdown id="subDistrict" [options]="subDistrictSelectItems" formControlName="subDistrict"
+          placeholder="&shy;" optionLabel="label" [showClear]="true" autoWidth="false" [style]="{ width: '100%' }">
+        </p-dropdown>
+      </div>
+    </div>
+
+    <!-- Report -->
+
+    <div class="p-formgroup-inline">
+      <div class="p-field" style="width:150px;">
+        <span>รายงาน</span>
+      </div>
+      <div class="p-field">
+        <p-radioButton name="report" value="ซื้อสินค้า" label="ซื้อสินค้า" formControlName="report">
+        </p-radioButton>
+      </div>
+      <div class="p-field">
+        <p-radioButton name="report" value="ไม่ซื้อสินค้า" label="ไม่ซื้อสินค้า" formControlName="report">
+        </p-radioButton>
+      </div>
+    </div>
+
+    <!-- Note  -->
+    <div class="p-field p-grid">
+      <label class="p-col-fixed" style="width:150px;" for="note">หมายเหตุ</label>
+      <textarea name="note" pInputTextarea [rows]="5" [cols]="30" formControlName="note"></textarea>
+    </div>
+
+    <div style="text-align: center;">
+      <button pButton type="button" label="Check in" (click)="onCheckIn()"></button>
+    </div>
+  </form>
+</div>
