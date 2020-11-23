@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CheckInSuccessComponent } from './check-in-success/check-in-success.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
-    CheckInComponent
+    CheckInComponent,
+    CheckInSuccessComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,7 +42,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     InputTextareaModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
-      { path: 'CheckIn', component: CheckInComponent, pathMatch: 'full' }
+      { path: 'CheckIn', component: CheckInComponent, pathMatch: 'full' },
+      { path: 'CheckInSuccess', component: CheckInSuccessComponent, pathMatch: 'full' }
     ])
   ],
   providers: [],

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 
 @Component({
@@ -19,7 +20,8 @@ export class CheckInComponent implements OnInit {
   provinceSelectItems: Array<SelectItem>;
   districtSelectItems: Array<SelectItem>;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,
+    private _router: Router) { }
 
   ngOnInit() {
     this.initForm();
@@ -59,6 +61,11 @@ export class CheckInComponent implements OnInit {
       this.url = reader.result;
       this.isImage = true;
     }
+  }
+
+  onCheckIn() {
+    // need to implement
+    this._router.navigate(['/CheckInSuccess']);
   }
 
 }
