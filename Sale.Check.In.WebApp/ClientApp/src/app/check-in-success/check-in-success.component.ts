@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-check-in-success',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckInSuccessComponent implements OnInit {
 
-  constructor() { }
+  constructor( private _router: Router) { }
 
   ngOnInit() {
+  }
+
+  onBackToCheckIn() {
+    this._router.navigate(['/CheckIn']);
   }
 
 }

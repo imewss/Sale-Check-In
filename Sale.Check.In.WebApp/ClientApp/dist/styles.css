@@ -16,6 +16,13 @@ code {
   border-color: #1861ac;
 }
 
+.main-container {
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+
 .p-grid {
   display: flex;
   flex-wrap: wrap;

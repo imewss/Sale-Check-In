@@ -1,7 +1,7 @@
-﻿using APITemplate.Interface;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Sale.Check.In.Gateway.Interface;
 
-namespace APITemplate.Controllers
+namespace Sale.Check.In.Gateway.Controllers
 {
     [ApiController]
     [Route("[controller]")]

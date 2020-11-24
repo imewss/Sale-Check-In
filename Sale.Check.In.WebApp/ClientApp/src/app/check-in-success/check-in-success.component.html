@@ -1,1 +1,39 @@
-<p>check-in-success works!</p>
+<app-nav-menu></app-nav-menu>
+<div class="main-container">
+  <!-- logo section -->
+  <app-header></app-header>
+
+  <!-- Detail  -->
+  <div style="text-align:center">
+    <span style="color: #49bc63 ;font-size: larger;">บันทึกสำเร็จ</span>
+  </div>
+  <div style="text-align:center">
+    <img src="../../assets/images/EWWOrWIU8AA6_u-.jpg" width="40%">
+  </div>
+
+  <div style="text-align:center">
+    <div class="p-field p-grid">
+      <label class="p-col-fixed" style="width:100px;">ชื่อร้านค้า :</label>
+      <div class="p-col">
+        <label class="p-col-fixed"> ร้านตัวแทนจำหน่าย VOX </label>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <label class="p-col-fixed" style="width:100px;">พิกัด :</label>
+      <div class="p-col">
+        <label name="location" class="p-col-fixed"> 13.8595721, 100.3593615 </label>
+      </div>
+    </div>
+
+    <div class="p-field p-grid">
+      <label class="p-col-fixed" style="width:100px;">เวลา :</label>
+      <div class="p-col">
+        <label class="p-col-fixed">วันพฤหัสที่ 12 พ.ย. 63 เวลา 15.00 น. </label>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <button pButton type="button" label="กลับไปหน้าหลัก" (click)="onBackToCheckIn()"></button>
+  </div>
+</div>

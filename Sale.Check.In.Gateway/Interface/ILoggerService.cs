@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace APITemplate.Interface
+﻿namespace Sale.Check.In.Gateway.Interface
 {
     public interface ILoggerService
     {

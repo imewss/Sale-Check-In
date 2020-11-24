@@ -9,6 +9,11 @@ import { SelectItem } from 'primeng/api';
   styleUrls: ['./check-in.component.css']
 })
 export class CheckInComponent implements OnInit {
+
+  // lat lon
+  currentLat: any;
+  currentLong: any;
+
   //upload image
   url: any;
   msg: string;
@@ -25,6 +30,7 @@ export class CheckInComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    this.findMe();
   }
 
   initForm() {
@@ -66,6 +72,22 @@ export class CheckInComponent implements OnInit {
   onCheckIn() {
     // need to implement
     this._router.navigate(['/CheckInSuccess']);
+  }
+
+  findMe() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.showPosition(position);
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+
+  showPosition(position) {
+    this.currentLat = position.coords.latitude;
+    this.currentLong = position.coords.longitude;
+
   }
 
 }

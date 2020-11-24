@@ -1,11 +1,7 @@
-﻿using APITemplate.Interface;
-using NLog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using NLog;
+using Sale.Check.In.Gateway.Interface;
 
-namespace APITemplate.Services
+namespace Sale.Check.In.Gateway.Services
 {
     public class LoggerService : ILoggerService
     {

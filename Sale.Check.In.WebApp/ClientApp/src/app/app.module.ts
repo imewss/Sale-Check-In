@@ -18,7 +18,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CheckInSuccessComponent } from './check-in-success/check-in-success.component';
 import { HeaderComponent } from './header/header.component';
-
+import { CheckInReportComponent } from './check-in-report/check-in-report.component';
+import { MenuModule } from 'primeng/menu';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { HeaderComponent } from './header/header.component';
     LoginComponent,
     CheckInComponent,
     CheckInSuccessComponent,
-    HeaderComponent
+    HeaderComponent,
+    CheckInReportComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,10 +45,13 @@ import { HeaderComponent } from './header/header.component';
     BrowserAnimationsModule,
     RadioButtonModule,
     InputTextareaModule,
+    MenuModule,
+    TableModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'CheckIn', component: CheckInComponent, pathMatch: 'full' },
-      { path: 'CheckInSuccess', component: CheckInSuccessComponent, pathMatch: 'full' }
+      { path: 'CheckInSuccess', component: CheckInSuccessComponent, pathMatch: 'full' },
+      { path: 'CheckInReport', component: CheckInReportComponent, pathMatch: 'full' }
     ])
   ],
   providers: [],

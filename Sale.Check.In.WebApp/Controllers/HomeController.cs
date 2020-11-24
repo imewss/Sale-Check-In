@@ -1,9 +1,5 @@
-﻿using APITemplate.Interface;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using Sale.Check.In.Gateway.Interface;
 
 namespace Template.Controllers
 {

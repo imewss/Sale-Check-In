@@ -3,13 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Reflection;
-using System.IO;
-using Microsoft.OpenApi.Models;
-using APITemplate.Extensions;
-using APITemplate.Interface;
-using APITemplate.Services;
+using Sale.Check.In.Gateway.Interface;
+using Sale.Check.In.Gateway.Interface.Extensions;
+using Sale.Check.In.Gateway.Services;
 
 namespace APITemplate
 {

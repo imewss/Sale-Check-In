@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\APITemplate\Sale.Check.In.Gateway.csproj" />
+    <ProjectReference Include="..\Sale.Check.In.Gateway\Sale.Check.In.Gateway.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

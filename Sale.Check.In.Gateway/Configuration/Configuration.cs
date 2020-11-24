@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace APITemplate.Configuration
+namespace Sale.Check.In.Gateway.Configuration
 {
     public class Configuration
     {
