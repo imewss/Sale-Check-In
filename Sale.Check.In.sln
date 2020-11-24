@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sale.Check.In.WebApp", "Template\Sale.Check.In.WebApp.csproj", "{BE3E78C2-9C75-4102-B216-228DC7535DF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sale.Check.In.WebApp", "Sale.Check.In.WebApp\Sale.Check.In.WebApp.csproj", "{BE3E78C2-9C75-4102-B216-228DC7535DF8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sale.Check.In.Gateway", "APITemplate\Sale.Check.In.Gateway.csproj", "{0F4C9EFA-C0ED-49E0-8C91-795677BC37BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sale.Check.In.Gateway", "Sale.Check.In.Gateway\Sale.Check.In.Gateway.csproj", "{0F4C9EFA-C0ED-49E0-8C91-795677BC37BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
