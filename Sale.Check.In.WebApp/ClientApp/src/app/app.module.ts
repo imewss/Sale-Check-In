@@ -21,6 +21,8 @@ import { HeaderComponent } from './header/header.component';
 import { CheckInReportComponent } from './check-in-report/check-in-report.component';
 import { MenuModule } from 'primeng/menu';
 import { TableModule } from 'primeng/table';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { TableModule } from 'primeng/table';
     InputTextareaModule,
     MenuModule,
     TableModule,
+    MessagesModule,
+    MessageModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'CheckIn', component: CheckInComponent, pathMatch: 'full' },

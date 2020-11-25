@@ -14,3 +14,12 @@ button {
   cursor: pointer;
   width: 100%;
 }
+
+.required-color {
+  color: red;
+  margin-right: 3px;
+}
+
+.row-gap {
+  margin-top: 8px;
+}

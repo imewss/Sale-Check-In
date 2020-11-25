@@ -22,6 +22,9 @@ code {
   padding: 10px;
 }
 
+.p-inline-message.p-inline-message-error {
+  width: 100% !important;
+}
 
 .p-grid {
   display: flex;

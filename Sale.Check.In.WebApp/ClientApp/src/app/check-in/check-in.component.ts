@@ -24,6 +24,11 @@ export class CheckInComponent implements OnInit {
   shopTypeSelectItems: Array<SelectItem>;
   provinceSelectItems: Array<SelectItem>;
   districtSelectItems: Array<SelectItem>;
+  customerTypeSelectItems: Array<SelectItem>;
+  city1: any = null;
+  city0: any = null;
+  test: SelectItem;
+  newCustomer: SelectItem;
 
   constructor(private _formBuilder: FormBuilder,
     private _router: Router) { }
@@ -31,19 +36,33 @@ export class CheckInComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.findMe();
+    this.initcustomerTypeSelectItems();
   }
 
   initForm() {
     this.checkInForm = this._formBuilder.group({
       name: new FormControl(null, Validators.required),
       shopType: new FormControl(null, Validators.required),
-      customerType: new FormControl(null, Validators.required),
+      selectedCustomerType: new FormControl(null, Validators.required),
       province: new FormControl(null, Validators.required),
-      district: new FormControl(null),
-      subDistrict: new FormControl(null),
-      report: new FormControl(null),
+      district: new FormControl(null, Validators.required),
+      subDistrict: new FormControl(null, Validators.required),
+      report: new FormControl(null, Validators.required),
       note: new FormControl(null)
     });
+  }
+
+  initcustomerTypeSelectItems() {
+    this.customerTypeSelectItems = {} as Array<SelectItem>;
+    this.test = {} as SelectItem;
+    this.newCustomer = {} as SelectItem;
+
+   this.test.label = "ลูกค้าเก่า";
+   this.test.value = "ลูกค้าเก่า";
+   this.newCustomer.label = "ลูกค้าใหม่";
+   this.newCustomer.value = "ลูกค้าใหม่";
+   this.customerTypeSelectItems = [this.test];
+   this.customerTypeSelectItems.push(this.newCustomer);
   }
 
   selectFile(event) {
