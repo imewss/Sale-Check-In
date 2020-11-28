@@ -36,7 +36,7 @@ export class CheckInComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.findMe();
-    this.initcustomerTypeSelectItems();
+
   }
 
   initForm() {
@@ -47,22 +47,13 @@ export class CheckInComponent implements OnInit {
       province: new FormControl(null, Validators.required),
       district: new FormControl(null, Validators.required),
       subDistrict: new FormControl(null, Validators.required),
-      report: new FormControl(null, Validators.required),
+      selectedReport: new FormControl(null, Validators.required),
       note: new FormControl(null)
     });
-  }
 
-  initcustomerTypeSelectItems() {
-    this.customerTypeSelectItems = {} as Array<SelectItem>;
-    this.test = {} as SelectItem;
-    this.newCustomer = {} as SelectItem;
-
-   this.test.label = "ลูกค้าเก่า";
-   this.test.value = "ลูกค้าเก่า";
-   this.newCustomer.label = "ลูกค้าใหม่";
-   this.newCustomer.value = "ลูกค้าใหม่";
-   this.customerTypeSelectItems = [this.test];
-   this.customerTypeSelectItems.push(this.newCustomer);
+    this.checkInForm.valueChanges.subscribe(e => {
+      this.checkInForm.setValue(e, { emitEvent: false });
+    });
   }
 
   selectFile(event) {

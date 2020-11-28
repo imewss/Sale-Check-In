@@ -66,41 +66,22 @@
 
 
     <!-- customer type  -->
-    <!-- <div class="p-formgroup-inline">
-      <div class="p-field" style="width:150px;">
-        <span>ประเภทลูกค้า<span class="required-color">*</span></span>
-      </div>
-      <div class="p-field">
-        <p-radioButton name="customerType" value="ลูกค้าเก่า" label="ลูกค้าเก่า" formControlName="customerType">
-        </p-radioButton>
-      </div>
-      <div class="p-field">
-        <p-radioButton name="customerType" value="ลูกค้าใหม่" label="ลูกค้าใหม่" formControlName="customerType">
-        </p-radioButton>
-      </div>
-    </div> -->
     <div class="p-col-12">
       <div class="p-formgroup-inline">
-        <div class="p-field">
+        <div class="p-field" style="width: 80px; padding-top: 0px;">
           <span>ประเภทลูกค้า<span class="required-color">*</span></span>
         </div>
 
-        <div *ngFor="let customerTypeItem of customerTypeSelectItems" class="p-field-checkbox row-gap">
-          <p-radioButton name="customerType"
-          label="{{ customerTypeItem.label }}"
-          [value]="customerTypeItem"
-          formControlName="selectedCustomerType"></p-radioButton>
-        </div>
-
-        <!-- <div class="p-field-checkbox">
-          <p-radioButton name="customerType" value="ลูกค้าเก่า" label="ลูกค้าเก่า" [(ngModel)]="oldCustomer"
-          [ngModelOptions]="{standalone: true}">
+        <div class="p-field-checkbox">
+          <p-radioButton name="customerType" value="ลูกค้าเก่า" label="ลูกค้าเก่า"
+            formControlName="selectedCustomerType">
           </p-radioButton>
         </div>
         <div class="p-field-checkbox">
-          <p-radioButton name="customerType" value="ลูกค้าใหม่" label="ลูกค้าใหม่" [(ngModel)]="newCustomer" [ngModelOptions]="{standalone: true}">
+          <p-radioButton name="customerType" value="ลูกค้าใหม่" label="ลูกค้าใหม่"
+            formControlName="selectedCustomerType">
           </p-radioButton>
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -182,38 +163,21 @@
       </ng-container>
     </div>
 
-    <!-- Report -->
-    <!-- <div class="p-field p-grid">
-      <div class="p-field" style="width:150px;">
-        <span>รายงาน<span class="required-color">*</span></span>
-      </div>
-      <div class="p-col-6">
-        <p-radioButton name="report" value="ซื้อสินค้า" label="ซื้อสินค้า" formControlName="report">
-        </p-radioButton>
-      </div>
-      <div class="p-col-6">
-        <p-radioButton name="report" value="ไม่ซื้อสินค้า" label="ไม่ซื้อสินค้า" formControlName="report">
-        </p-radioButton>
-      </div>
-    </div> -->
-
+    <!-- Report  -->
     <div class="p-col-12">
       <div class="p-formgroup-inline">
-        <div class="p-field">
+        <div class="p-field" style="width: 80px; padding-top: 0px;">
           <span>รายงาน<span class="required-color">*</span></span>
         </div>
         <div class="p-field-checkbox">
-          <input type="radio" id="buy" name="report" [(ngModel)]="city1" [ngModelOptions]="{standalone: true}">
+          <p-radioButton name="report" value="ซื้อสินค้า" inputId="buy" formControlName="selectedReport">
+          </p-radioButton>
           <label for="buy">ซื้อสินค้า</label>
-          <!--<p-radioButton name="report" value="ซื้อสินค้า" inputId="buy" formControlName="report"></p-radioButton>
-          <label for="buy">ซื้อสินค้า</label> -->
         </div>
         <div class="p-field-checkbox">
-          <input type="radio" id="notBuy" name="report" [(ngModel)]="city1" [ngModelOptions]="{standalone: true}">
+          <p-radioButton name="report" value="ไม่ซื้อสินค้า" inputId="notBuy" formControlName="selectedReport">
+          </p-radioButton>
           <label for="notBuy">ไม่ซื้อสินค้า</label>
-
-          <!-- <p-radioButton name="report" value="ไม่ซื้อสินค้า" inputId="notBuy" formControlName="report"></p-radioButton>
-          <label for="notBuy">ไม่ซื้อสินค้า</label> -->
         </div>
       </div>
     </div>

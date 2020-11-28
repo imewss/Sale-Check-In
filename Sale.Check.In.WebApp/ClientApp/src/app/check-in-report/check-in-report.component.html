@@ -6,25 +6,32 @@
     <span style="color: gray ;font-size: larger;">ประวัติการเช็คอิน</span>
   </div>
   <div class="card">
-    <p-table [value]="checkInHistory.collection">
-      <ng-template pTemplate="header">
-        <tr>
-          <th pSortableColumn="code">รูปภาพ <p-sortIcon field="code"></p-sortIcon>
-          </th>
-          <th pSortableColumn="name">ร้านค้า <p-sortIcon field="name"></p-sortIcon>
-          </th>
-          <th pSortableColumn="category">วันที่ <p-sortIcon field="category"></p-sortIcon>
+    <p-table [value]="checkInHistory.collection" [columns]="cols" [lazy]="true" (onLazyLoad)="loadCustomers($event)"
+      [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
+      <ng-template pTemplate="header" let-columns>
+        <tr style="text-align: left;">
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="text-align: center">
+            {{col.header}}
+            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+              ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"
+              style="float: right"></p-sortIcon>
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-rowData>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="3" style="text-align: center">
+            <span>No items.</span>
+          </td>
+        </tr>
+      </ng-template>
+      <!-- <ng-template pTemplate="body" let-rowData>
         <tr>
           <td> {{ rowData[0] }}</td>
           <td>{{ rowData[1] }}</td>
           <td>{{ rowData[2] }}</td>
-          <!-- <td>วันพฤหัสที่ 28 </td> -->
         </tr>
-      </ng-template>
+      </ng-template> -->
     </p-table>
   </div>
 </div>

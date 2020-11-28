@@ -1,19 +1,37 @@
 <div class="container">
   <!-- logo section -->
   <app-header></app-header>
-  <label for="uname"><b>Username</b></label>
-  <input type="text" placeholder="Enter Username" name="uname" required>
+  <form [formGroup]="logInForm" style="padding-top: 30px;">
+    <div class="p-col-12">
+      <span class="p-float-label">
+        <input type="text" formControlName="username" name="username" required>
+        <label for="username"><b>ชื่อผู้ใช้งาน</b></label>
+      </span>
+      <ng-container
+        *ngIf="!logInForm.controls['username'].valid && (logInForm.controls['username'].dirty || logInForm.controls['username'].touched)">
+        <p-message severity="error" class="p-message-validate" text="กรุณากรอกผู้ใช้งาน"
+          *ngIf="logInForm.controls['username'].hasError('required')"></p-message>
+      </ng-container>
+    </div>
 
-  <label for="psw"><b>Password</b></label>
-  <input type="password" placeholder="Enter Password" name="psw" required>
+    <div class="p-col-12">
+      <span class="p-float-label">
+        <input type="password" name="password" formControlName="password" required>
+        <label for="password"><b>รหัสผ่าน</b></label>
+      </span>
+      <ng-container
+        *ngIf="!logInForm.controls['password'].valid && (logInForm.controls['password'].dirty || logInForm.controls['password'].touched)">
+        <p-message severity="error" class="p-message-validate" text="กรุณากรอกรหัสผ่าน"
+          *ngIf="logInForm.controls['password'].hasError('required')"></p-message>
+      </ng-container>
+    </div>
 
-  <button pButton type="button" label="Login" (click)="onValidateUser()"></button>
-  <!-- <label>
-    <input type="checkbox" checked="checked" name="remember"> Remember me
-  </label> -->
+    <!-- <label for="uname"><b>Username</b></label>
+    <input type="text" formControlName="username" placeholder="Enter Username" name="username" required> -->
+
+    <!-- <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" formControlName="password" required> -->
+
+    <button pButton type="button" label="ลงชื่อเข้าใช้" [disabled]="logInForm.invalid" (click)="onValidateUser()"></button>
+  </form>
 </div>
-<!--
-<div class="container" style="background-color:#f1f1f1">
-  <button type="button" class="cancelbtn">Cancel</button>
-  <span class="psw">Forgot <a href="#">password?</a></span>
-</div> -->
