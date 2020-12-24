@@ -24,3 +24,15 @@ code {
 .p-inline-message.p-inline-message-error {
   width: 100% !important;
 }
+
+input {
+  border-radius: 8px;
+}
+
+textarea {
+  border-radius: 8px;
+}
+
+.p-dropdown {
+  border-radius: 8px !important;
+}
