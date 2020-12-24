@@ -23,3 +23,12 @@ button {
 .row-gap {
   margin-top: 8px;
 }
+
+input {
+  border-radius: 8px;
+}
+
+textarea {
+  border-radius: 8px;
+}
+

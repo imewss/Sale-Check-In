@@ -1,11 +1,12 @@
 <div class="container">
+  <br>
   <!-- logo section -->
   <app-header></app-header>
   <form [formGroup]="logInForm" style="padding-top: 30px;">
     <div class="p-col-12">
       <span class="p-float-label">
-        <input type="text" formControlName="username" name="username" required>
-        <label for="username"><b>ชื่อผู้ใช้งาน</b></label>
+        <input id="username" type="text" formControlName="username" pInputText style="width: 100%;" autocomplete="off">
+        <label for="username">ชื่อผู้ใช้งาน<span class="required-color">*</span></label>
       </span>
       <ng-container
         *ngIf="!logInForm.controls['username'].valid && (logInForm.controls['username'].dirty || logInForm.controls['username'].touched)">
@@ -16,8 +17,8 @@
 
     <div class="p-col-12">
       <span class="p-float-label">
-        <input type="password" name="password" formControlName="password" required>
-        <label for="password"><b>รหัสผ่าน</b></label>
+        <input id="password" type="password" formControlName="password" pInputText style="width: 100%;" autocomplete="off">
+        <label for="password">รหัสผ่าน<span class="required-color">*</span></label>
       </span>
       <ng-container
         *ngIf="!logInForm.controls['password'].valid && (logInForm.controls['password'].dirty || logInForm.controls['password'].touched)">
@@ -26,12 +27,11 @@
       </ng-container>
     </div>
 
-    <!-- <label for="uname"><b>Username</b></label>
-    <input type="text" formControlName="username" placeholder="Enter Username" name="username" required> -->
+    <div class="p-col-12">
+      <div *ngIf="invalidLogin" style="color: #f0484e;font-size: larger;">Invalid username or password</div>
+    </div>
 
-    <!-- <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" formControlName="password" required> -->
-
-    <button pButton type="button" label="ลงชื่อเข้าใช้" [disabled]="logInForm.invalid" (click)="onValidateUser()"></button>
+    <button pButton style="border-radius: 8px;" type="button" label="ลงชื่อเข้าใช้" [disabled]="logInForm.invalid"
+      (click)="onValidateUser()"></button>
   </form>
 </div>

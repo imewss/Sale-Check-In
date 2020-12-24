@@ -1,4 +1,8 @@
 <app-nav-menu></app-nav-menu>
+
+<!--toast message-->
+<p-toast [style]="{marginTop: '80px'}" position="top-center"></p-toast>
+
 <div class="main-container">
   <!-- logo section -->
   <app-header></app-header>
@@ -19,13 +23,7 @@
   <!-- Form Section  -->
   <form [formGroup]="checkInForm" style="padding-top: 30px;">
 
-    <!-- shop name / customer name  -->
-    <!-- <div class="p-field p-grid">
-      <label for="name" class="p-col-fixed" style="width:150px;">ชื่อร้านค้า/ลูกค้า<span class="required-color">*</span></label>
-      <div class="p-col">
-        <input id="name" type="text" formControlName="name" pInputText style="width: 100%;" autocomplete="off">
-      </div>
-    </div> -->
+
     <div class="p-col-12">
       <span class="p-float-label">
         <input id="name" type="text" formControlName="name" pInputText style="width: 100%;" autocomplete="off">
@@ -37,17 +35,6 @@
           *ngIf="checkInForm.controls['name'].hasError('required')"></p-message>
       </ng-container>
     </div>
-
-    <!-- shop type  -->
-    <!-- <div class="p-field p-grid">
-      <label for="shopType" class="p-col-fixed" style="width:150px;">ประเภทร้านค้า<span
-          class="required-color">*</span></label>
-      <div class="p-col">
-        <p-dropdown id="shopType" [options]="shopTypeSelectItems" formControlName="shopType" placeholder="&shy;"
-          optionLabel="label" [showClear]="true" autoWidth="false" [style]="{ width: '100%' }">
-        </p-dropdown>
-      </div>
-    </div> -->
 
     <div class="p-col-12">
       <span class="p-float-label">
@@ -111,53 +98,31 @@
       </ng-container>
     </div>
 
-
-    <!-- District -->
-    <!-- <div class="p-field p-grid">
-      <label for="district" class="p-col-fixed" style="width:150px;">อำเภอ<span class="required-color">*</span></label>
-      <div class="p-col">
-        <p-dropdown id="district" [options]="districtSelectItems" formControlName="district" placeholder="&shy;"
+    <div class="p-col-12">
+      <span class="p-float-label">
+        <p-dropdown id="amphur" [options]="amphurSelectedItems" formControlName="amphur" placeholder="&shy;" [disabled]="!isProvinceSelected"
           optionLabel="label" [showClear]="true" autoWidth="false" [style]="{ width: '100%' }">
         </p-dropdown>
-      </div>
-    </div> -->
+        <label for="amphur" class="p-col-fixed" style="width:150px;">อำเภอ<span
+            class="required-color">*</span></label>
+      </span>
+      <ng-container
+        *ngIf="!checkInForm.controls['amphur'].valid && (checkInForm.controls['amphur'].dirty || checkInForm.controls['amphur'].touched)">
+        <p-message severity="error" class="p-message-validate" text="กรุณาเลือกอำเภอ"
+          *ngIf="checkInForm.controls['amphur'].hasError('required')"></p-message>
+      </ng-container>
+    </div>
 
     <div class="p-col-12">
       <span class="p-float-label">
-        <p-dropdown id="district" [options]="districtSelectItems" formControlName="district" placeholder="&shy;"
-          optionLabel="label" [showClear]="true" autoWidth="false" [style]="{ width: '100%' }">
+        <p-dropdown id="district" [options]="districtSelectItems" formControlName="district" [disabled]="!isAmphurSelected"
+          placeholder="&shy;" optionLabel="label" [showClear]="true" autoWidth="false" [style]="{ width: '100%' }">
         </p-dropdown>
-        <label for="district" class="p-col-fixed" style="width:150px;">อำเภอ<span
+        <label for="district" class="p-col-fixed" style="width:150px;">ตำบล<span
             class="required-color">*</span></label>
       </span>
       <ng-container
         *ngIf="!checkInForm.controls['district'].valid && (checkInForm.controls['district'].dirty || checkInForm.controls['district'].touched)">
-        <p-message severity="error" class="p-message-validate" text="กรุณาเลือกอำเภอ"
-          *ngIf="checkInForm.controls['district'].hasError('required')"></p-message>
-      </ng-container>
-    </div>
-
-    <!-- Sub-district -->
-    <!-- <div class="p-field p-grid">
-      <label for="subDistrict" class="p-col-fixed" style="width:150px;">ตำบล<span
-          class="required-color">*</span></label>
-      <div class="p-col">
-        <p-dropdown id="subDistrict" [options]="subDistrictSelectItems" formControlName="subDistrict"
-          placeholder="&shy;" optionLabel="label" [showClear]="true" autoWidth="false" [style]="{ width: '100%' }">
-        </p-dropdown>
-      </div>
-    </div> -->
-
-    <div class="p-col-12">
-      <span class="p-float-label">
-        <p-dropdown id="subDistrict" [options]="subDistrictSelectItems" formControlName="subDistrict"
-          placeholder="&shy;" optionLabel="label" [showClear]="true" autoWidth="false" [style]="{ width: '100%' }">
-        </p-dropdown>
-        <label for="subDistrict" class="p-col-fixed" style="width:150px;">ตำบล<span
-            class="required-color">*</span></label>
-      </span>
-      <ng-container
-        *ngIf="!checkInForm.controls['subDistrict'].valid && (checkInForm.controls['subDistrict'].dirty || checkInForm.controls['subDistrict'].touched)">
         <p-message severity="error" class="p-message-validate" text="กรุณาเลือกตำบล"
           *ngIf="checkInForm.controls['district'].hasError('required')"></p-message>
       </ng-container>
@@ -182,12 +147,6 @@
       </div>
     </div>
 
-    <!-- Note  -->
-    <!-- <div class="p-field p-grid">
-      <label class="p-col-fixed" style="width:150px;" for="note">หมายเหตุ</label>
-      <textarea name="note" pInputTextarea [rows]="5" [cols]="38" formControlName="note"></textarea>
-    </div> -->
-
     <div class="p-col-12">
       <span class="p-float-label">
         <textarea name="note" pInputTextarea [rows]="5" [cols]="38" formControlName="note"></textarea>
@@ -196,7 +155,7 @@
     </div>
 
     <div style="text-align: center;">
-      <button pButton type="button" label="Check in" (click)="onCheckIn()"></button>
+      <button style="border-radius: 8px;" pButton type="button" label="Check in" (click)="onCheckIn()"></button>
       <!-- [disabled]="checkInForm.invalid" -->
     </div>
   </form>

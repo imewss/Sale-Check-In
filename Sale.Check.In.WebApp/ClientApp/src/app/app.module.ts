@@ -23,6 +23,17 @@ import { MenuModule } from 'primeng/menu';
 import { TableModule } from 'primeng/table';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
+import { ToastModule } from 'primeng/toast';
+import { BlockUIModule } from 'primeng/blockui';
+import { LoadingComponent } from './loading/loading.component';
+import { HttpLoadingInterceptor } from './interceptors/http.interceptor';
+import { CookieService } from 'ngx-cookie-service';
+import { JwtModule } from '@auth0/angular-jwt'
+import { AuthGuard } from './guards/auth-guard.service';
+
+export function tokenGetter() {
+  return localStorage.getItem('jwt');
+}
 
 @NgModule({
   declarations: [
@@ -33,7 +44,8 @@ import { MessagesModule } from 'primeng/messages';
     CheckInComponent,
     CheckInSuccessComponent,
     HeaderComponent,
-    CheckInReportComponent
+    CheckInReportComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,14 +63,34 @@ import { MessagesModule } from 'primeng/messages';
     TableModule,
     MessagesModule,
     MessageModule,
+    ToastModule,
+    BlockUIModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
-      { path: 'CheckIn', component: CheckInComponent, pathMatch: 'full' },
-      { path: 'CheckInSuccess', component: CheckInSuccessComponent, pathMatch: 'full' },
-      { path: 'CheckInReport', component: CheckInReportComponent, pathMatch: 'full' }
-    ])
+      { path: 'CheckIn', component: CheckInComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'CheckInSuccess', component: CheckInSuccessComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'CheckInReport', component: CheckInReportComponent, pathMatch: 'full', canActivate: [AuthGuard] }
+    ]),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:44388"],
+        disallowedRoutes: []
+      }
+    })
   ],
-  providers: [],
+  providers: [[AuthGuard]
+    ,
+  [CookieService, {
+    multi: true,
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpLoadingInterceptor
+  }]
+  ],
+  exports: [
+    HeaderComponent,
+    LoadingComponent
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -17,4 +17,18 @@ export class CheckInSuccessComponent implements OnInit {
     this._router.navigate(['/CheckIn']);
   }
 
+  processReceiptImage(imageInput: any) {
+    if (imageInput.files.length > 0) {
+      let file: File = imageInput.files[0];
+      let reader = new FileReader();
+      reader.addEventListener('load', (event: any) => {
+        // this.addEditItem.receiptImage = event.target.result;
+        // this.addEditForm.controls['receiptFile'].setValue(this.addEditItem.receiptImage.split(',')[1]);
+        // this.addEditForm.controls['mimeType'].setValue(this.addEditItem.receiptImage.split(':')[1].split(';')[0]);
+      });
+
+      reader.readAsDataURL(file);
+    }
+  }
+
 }

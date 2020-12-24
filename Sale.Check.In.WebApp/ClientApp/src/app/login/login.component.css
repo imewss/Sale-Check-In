@@ -7,6 +7,12 @@ input[type=text], input[type=password] {
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.required-color {
+  color: red;
+  margin-right: 3px;
 }
 
 button {
