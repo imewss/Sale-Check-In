@@ -26,6 +26,18 @@ code {
   width: 100% !important;
 }
 
+input {
+  border-radius: 8px;
+}
+
+textarea {
+  border-radius: 8px;
+}
+
+.p-dropdown {
+  border-radius: 8px !important;
+}
+
 .p-grid {
   display: flex;
   flex-wrap: wrap;

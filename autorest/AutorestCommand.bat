@@ -1,0 +1,1 @@
+autorest --input-file=swagger.json --output-folder=. --namespace=Sale.Check.In.WebApp --csharp
