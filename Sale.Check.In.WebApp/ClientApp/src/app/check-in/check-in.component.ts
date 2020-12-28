@@ -7,6 +7,7 @@ import { Amphur } from '../model/amphur.model';
 import { CheckInSaveModel } from '../model/check-in-save.model';
 import { District } from '../model/district.model';
 import { Province } from '../model/province.model';
+import { ShopType } from '../model/shop-type.model';
 
 @Component({
   selector: 'app-check-in',
@@ -178,6 +179,7 @@ export class CheckInComponent implements OnInit {
 
   loadEnum() {
     var provinceArray = [];
+    var shopTypeArray = [];
     // province
     this._http.get('api/CheckIn/Province').subscribe((res: Array<Province>) => {
       res.forEach(element => {
@@ -186,6 +188,15 @@ export class CheckInComponent implements OnInit {
       this.provinceSelectItems = provinceArray;
 
     });
+
+    // shop type
+    this._http.get('api/CheckIn/ShopType').subscribe((res: Array<ShopType>) => {
+      res.forEach(element => {
+        shopTypeArray.push({ label: element.shopTypeName, value: element.shopTypeId });
+      });
+
+      this.shopTypeSelectItems = shopTypeArray;
+    })
 
   }
 

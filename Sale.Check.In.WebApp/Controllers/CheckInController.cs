@@ -46,7 +46,7 @@ namespace Sale.Check.In.WebApp.Controllers
             CheckinHistory result = new CheckinHistory();
             try
             {
-               result = await _checkInManager.AddCheckIn(checkInModel);
+                result = await _checkInManager.AddCheckIn(checkInModel);
             }
             catch (Exception ex)
             {
@@ -127,6 +127,28 @@ namespace Sale.Check.In.WebApp.Controllers
             }
 
             _logger.LogInfo("Get District End.");
+            return result;
+        }
+        /// <summary>
+        /// Get Shop Type
+        /// </summary>
+        /// <returns> shop type </returns>
+        [HttpGet]
+        [Route("ShopType")]
+        [Authorize]
+        public async Task<List<ShopType>> GetShopType()
+        {
+            _logger.LogInfo("Get Shop Type Start.");
+            var result = new List<ShopType>();
+            try
+            {
+                result = await _checkInManager.GetShopType();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Get Shop Type" + ex);
+            }
+            _logger.LogInfo("Get Shop Type End.");
             return result;
         }
 

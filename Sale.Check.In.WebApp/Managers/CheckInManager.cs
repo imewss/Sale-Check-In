@@ -131,6 +131,27 @@ namespace Sale.Check.In.WebApp.Managers
         }
 
         /// <summary>
+        /// get shop type
+        /// </summary>
+        /// <returns> shop type </returns>
+        public async Task<List<ShopType>> GetShopType()
+        {
+            _logger.LogInfo("Get shop type Start.");
+            var result = new List<ShopType>();
+            try
+            {
+                result = await _context.ShopType.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Get shop type" + ex);
+            }
+
+            _logger.LogInfo("Get shop type End.");
+            return result;
+        }
+
+        /// <summary>
         /// Get Checkin Histories
         /// </summary>
         /// <returns> Checkin History List</returns>

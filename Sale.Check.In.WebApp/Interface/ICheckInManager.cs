@@ -37,6 +37,12 @@ namespace Sale.Check.In.WebApp.Interface
         Task<List<District>> GetDistrict(int districtId);
 
         /// <summary>
+        /// get shop type
+        /// </summary>
+        /// <returns> shop type </returns>
+        Task<List<ShopType>> GetShopType();
+
+        /// <summary>
         /// Get Checkin Histories
         /// </summary>
         /// <param name="userId"></param>

@@ -10,6 +10,7 @@ namespace Sale.Check.In.WebApp.DBContexts
         public DbSet<Amphur> Amphur { get; set; }
         public DbSet<District> District { get; set; }
         public DbSet<CheckinHistory> CheckinHistory { get; set; }
+        public DbSet<ShopType> ShopType { get; set; }
 
         public MyDBContext(DbContextOptions<MyDBContext> options) : base(options)
         {
@@ -25,6 +26,7 @@ namespace Sale.Check.In.WebApp.DBContexts
             modelBuilder.Entity<Amphur>().ToTable("tbl_amphur");
             modelBuilder.Entity<District>().ToTable("tbl_district");
             modelBuilder.Entity<CheckinHistory>().ToTable("checkin_history");
+            modelBuilder.Entity<ShopType>().ToTable("shop_type");
 
             // Configure Primary Keys  
             modelBuilder.Entity<SoProvince>().HasKey(ug => ug.P_Id).HasName("P_Id");
@@ -32,6 +34,7 @@ namespace Sale.Check.In.WebApp.DBContexts
             modelBuilder.Entity<Amphur>().HasKey(u => u.Amphur_Id).HasName("Amphur_Id");
             modelBuilder.Entity<District>().HasKey(u => u.District_Id).HasName("District_Id");
             modelBuilder.Entity<CheckinHistory>().HasKey(u => u.Checkin_history_Id).HasName("Checkin_history_Id");
+            modelBuilder.Entity<ShopType>().HasKey(u => u.ShopTypeId).HasName("ShopTypeId");
 
             //// Configure indexes  
             //modelBuilder.Entity<UserGroup>().HasIndex(p => p.Name).IsUnique().HasDatabaseName("Idx_Name");
