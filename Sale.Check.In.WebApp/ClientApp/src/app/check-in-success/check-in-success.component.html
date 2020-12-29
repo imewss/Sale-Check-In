@@ -8,18 +8,20 @@
     <span style="color: #49bc63 ;font-size: larger;">บันทึกสำเร็จ</span>
   </div>
   <div style="text-align:center">
-    <img src="../../assets/images/EWWOrWIU8AA6_u-.jpg" width="40%">
+    <!-- <img src="../../assets/images/EWWOrWIU8AA6_u-.jpg" width="40%"> -->
+    <img [src]="imageFormatted" width="40%">
+
   </div>
 
   <div style="text-align: center; padding-top: 10px;">
     <div class="p-col-12">
-      <span>ชื่อร้านค้า :</span> &nbsp; <span> ร้านตัวแทนจำหน่าย VOX</span>
+      <span>ชื่อร้านค้า :</span> &nbsp; <span> {{ shopName }} </span>
     </div>
     <div class="p-col-12">
-      <span>พิกัด :</span> &nbsp; <span> 13.8595721, 100.3593615 </span>
+      <span>พิกัด :</span> &nbsp; <span> {{ lattitude }}, {{ longitude }} </span>
     </div>
     <div class="p-col-12">
-      <span>เวลา :</span> &nbsp; <span> วันพฤหัสที่ 12 พ.ย. 63 เวลา 15.00 น. </span>
+      <span>เวลา :</span> &nbsp; <span> {{ createdDateFormmatted }} </span>
     </div>
   </div>
 

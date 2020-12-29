@@ -46,7 +46,23 @@ namespace Sale.Check.In.WebApp.Interface
         /// Get Checkin Histories
         /// </summary>
         /// <param name="userId"></param>
-        /// <returns> Checkin History</returns>
-        Task<List<CheckinHistory>> GetCheckinHistories(int userId);
+        ///// <returns> Checkin History</returns>
+        //Task<List<CheckinHistory>> GetCheckinHistories(int userId);
+
+        /// <summary>
+        /// Get check In histories
+        /// </summary>
+        /// <param name="sortFiled"></param>
+        /// <param name="isOrderByAsc"></param>
+        /// <param name="page"></param>
+        /// <param name="limit"></param>
+        /// <returns></returns>
+        Task<ListCollectionCheckInHistoriesModel> GetCheckInHistories(int userId, string sortFiled, bool isOrderByAsc, int page, int limit);
+
+        /// <summary>
+        /// Get Latest CheckIn 
+        /// </summary>
+        /// <returns> latest check in </returns>
+        Task<CheckinHistory> GetLatestCheckIn();
     }
 }

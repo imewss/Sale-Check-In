@@ -3,16 +3,33 @@
   <!-- logo section -->
   <app-header></app-header>
   <div style="text-align:center">
-    <span style="color: gray ;font-size: larger;">ประวัติการเช็คอิน</span>
+    <span style="color: gray ;font-size: larger;">ประวัติการเช็คอิน
+      <button style="border-radius: 8px;float: right;width: 30%;" pButton type="button" label="Sort By Date" (click)="searchData()"></button>
+    </span>
+<br><br><br>
   </div>
+  <br/>
   <div class="card">
-    <p-table [value]="checkInHistory.collection" [columns]="cols" [lazy]="true" (onLazyLoad)="loadCustomers($event)"
-      [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
+    <p-table #dt
+             [columns]="cols"
+             [responsive]="true"
+             [value]="checkInHistory.collection"
+             [lazy]="true"
+             (onLazyLoad)="loadData($event)"
+             [paginator]="true"
+             [rows]="pageSize"
+             [first]="(pageIndex - 1) * pageSize"
+             [totalRecords]="totalRecords"
+             [showCurrentPageReport]="true"
+             [currentPageReportTemplate]="'Page {currentPage} of {totalPages}'"
+             selectionMode="single"
+             [autoLayout]="true"
+             styleClass="p-datatable-responsive-demo">
       <ng-template pTemplate="header" let-columns>
         <tr style="text-align: left;">
           <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="text-align: center">
             {{col.header}}
-            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" *ngIf="col.field == 'createdDateFormatted'"
               ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"
               style="float: right"></p-sortIcon>
           </th>
@@ -25,13 +42,22 @@
           </td>
         </tr>
       </ng-template>
-      <!-- <ng-template pTemplate="body" let-rowData>
+
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr>
-          <td> {{ rowData[0] }}</td>
-          <td>{{ rowData[1] }}</td>
-          <td>{{ rowData[2] }}</td>
+          <td *ngFor="let col of columns"
+              [ngStyle]="col.field == 'imageFormatted' ? {'text-align':'center'} : {'text-align':'center'}">
+          <div *ngIf="col.field == 'imageFormatted'; else otherTemplate">
+            <img src="{{rowData[col.field]}}" style="width: 100px;">
+           </div>
+
+            <ng-template #otherTemplate>
+              {{ rowData[col.field] }}
+            </ng-template>
+          </td>
         </tr>
-      </ng-template> -->
+      </ng-template>
+
     </p-table>
   </div>
 </div>

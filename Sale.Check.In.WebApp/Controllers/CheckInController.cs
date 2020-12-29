@@ -129,6 +129,7 @@ namespace Sale.Check.In.WebApp.Controllers
             _logger.LogInfo("Get District End.");
             return result;
         }
+
         /// <summary>
         /// Get Shop Type
         /// </summary>
@@ -158,15 +159,15 @@ namespace Sale.Check.In.WebApp.Controllers
         /// <param name="userId"></param>
         /// <returns> Checkin History</returns>
         [HttpGet]
-        [Route("")]
+        [Route("CheckinHistories")]
         [Authorize]
-        public async Task<List<CheckinHistory>> GetCheckinHistories(int userId)
+        public async Task<ListCollectionCheckInHistoriesModel> GetCheckinHistories([FromQuery] int userId, string sortFiled, bool isOrderByAsc, int page, int limit)
         {
             _logger.LogInfo("Get Checkin Histories Start.");
-            var result = new List<CheckinHistory>();
+            var result = new ListCollectionCheckInHistoriesModel();
             try
             {
-                result = await _checkInManager.GetCheckinHistories(userId);
+                result = await _checkInManager.GetCheckInHistories(userId, sortFiled, isOrderByAsc, page, limit);
             }
             catch (Exception ex)
             {
@@ -174,6 +175,29 @@ namespace Sale.Check.In.WebApp.Controllers
             }
 
             _logger.LogInfo("Get Checkin Histories End.");
+            return result;
+        }
+
+        /// <summary>
+        /// Get Latest CheckIn
+        /// </summary>
+        /// <returns>  Latest CheckIn </returns>
+        [HttpGet]
+        [Route("LatestCheckIn")]
+        [Authorize]
+        public async Task<CheckinHistory> GetLatestCheckIn()
+        {
+            _logger.LogInfo("Get Latest CheckIn Start.");
+            var result = new CheckinHistory();
+            try
+            {
+                result = await _checkInManager.GetLatestCheckIn();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Get Latest CheckIn" + ex);
+            }
+            _logger.LogInfo("Get Latest CheckIn End.");
             return result;
         }
 

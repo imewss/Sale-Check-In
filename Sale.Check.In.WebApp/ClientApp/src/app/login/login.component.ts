@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   logInForm: FormGroup;
   invalidLogin: boolean;
 
+  isLoading = false;
+
   constructor(private _router: Router,
     private _formBuilder: FormBuilder,
     private _http: HttpClient) { }
@@ -34,14 +36,15 @@ export class LoginComponent implements OnInit {
       'username': this.logInForm.controls['username'].value,
       'password': this.logInForm.controls['password'].value
     };
-
+    this.isLoading = true;
     this._http.post('api/auth/login', credentials)
       .subscribe((res) => {
         const token = (<any>res).token;
         const userId = (<any>res).userId;
         localStorage.setItem('jwt', token);
-        localStorage.setItem('userId',userId);
+        localStorage.setItem('userId', userId);
         this.invalidLogin = false;
+        this.isLoading = false;
         this._router.navigate(['/CheckIn']);
       }, err => {
         this.invalidLogin = true;

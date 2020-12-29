@@ -25,6 +25,7 @@ export class NavMenuComponent implements OnInit {
 
   onSignOut() {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("userId");
     this._router.navigate(['/']);
   }
 }

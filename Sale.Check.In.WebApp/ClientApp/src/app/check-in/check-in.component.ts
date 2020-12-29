@@ -122,7 +122,7 @@ export class CheckInComponent implements OnInit {
     this.checkInSaveModel.latitude = this.currentLat;
     this.checkInSaveModel.longitude = this.currentLong;
     this.checkInSaveModel.shopName = this.checkInForm.controls['name'].value;
-    this.checkInSaveModel.shopType = this.checkInForm.controls['shopType'].value;
+    this.checkInSaveModel.shopType = this.checkInForm.controls['shopType'].value.label;
     this.checkInSaveModel.customerType = this.checkInForm.controls['selectedCustomerType'].value;
     this.checkInSaveModel.province = this.checkInForm.controls['province'].value.label;
     this.checkInSaveModel.amphur = this.checkInForm.controls['amphur'].value.label;

@@ -1,3 +1,5 @@
+import { SafeResourceUrl } from "@angular/platform-browser";
+
 export interface CheckInHistoryListModel {
   pageIndex: number;
   totalPage: number;
@@ -5,7 +7,14 @@ export interface CheckInHistoryListModel {
 }
 
 export interface CheckInHistoryModel {
+  receiptFile: string
+  mimeType: string;
   img: string;
   shopName: string;
-  Date: Date;
+  createdDate: Date;
+  imageFormatted: SafeResourceUrl;
+  latitude: number;
+  longitude: number;
+  createdDateFormatted: string;
+
 }

@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sale.Check.In.WebApp.DBContexts;
+using Sale.Check.In.WebApp.Extension;
 using Sale.Check.In.WebApp.Interface;
 using Sale.Check.In.WebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Sale.Check.In.WebApp.Managers
@@ -34,27 +36,27 @@ namespace Sale.Check.In.WebApp.Managers
             CheckinHistory result = new CheckinHistory();
             try
             {
-                
-                    CheckinHistory checkinHistory = new CheckinHistory();
-                    checkinHistory.Latitude = checkInModel.Latitude;
-                    checkinHistory.Longitude = checkInModel.Longitude;
-                    checkinHistory.ShopName = checkInModel.ShopName;
-                    checkinHistory.ShopType = checkInModel.ShopType;
-                    checkinHistory.CustomerType = checkInModel.CustomerType;
-                    checkinHistory.Province = checkInModel.Province;
-                    checkinHistory.Amphur = checkInModel.District;
-                    checkinHistory.District = checkInModel.District;
-                    checkinHistory.ReportType = checkInModel.ReportType;
-                    checkinHistory.Note = checkInModel.Note;
-                    checkinHistory.ReceiptFile = checkInModel.ReceiptFile;
-                    checkinHistory.MimeType = checkInModel.MimeType;
-                    checkinHistory.CreatedDate = DateTime.UtcNow;
-                    checkinHistory.User_Id = checkInModel.UserId;
 
-                    _context.Entry(checkinHistory).State = EntityState.Added;
-                    _context.SaveChanges();
+                CheckinHistory checkinHistory = new CheckinHistory();
+                checkinHistory.Latitude = checkInModel.Latitude;
+                checkinHistory.Longitude = checkInModel.Longitude;
+                checkinHistory.ShopName = checkInModel.ShopName;
+                checkinHistory.ShopType = checkInModel.ShopType;
+                checkinHistory.CustomerType = checkInModel.CustomerType;
+                checkinHistory.Province = checkInModel.Province;
+                checkinHistory.Amphur = checkInModel.District;
+                checkinHistory.District = checkInModel.District;
+                checkinHistory.ReportType = checkInModel.ReportType;
+                checkinHistory.Note = checkInModel.Note;
+                checkinHistory.ReceiptFile = checkInModel.ReceiptFile;
+                checkinHistory.MimeType = checkInModel.MimeType;
+                checkinHistory.CreatedDate = DateTime.Now;
+                checkinHistory.User_Id = checkInModel.UserId;
 
-                    result = checkinHistory;
+                _context.Entry(checkinHistory).State = EntityState.Added;
+                _context.SaveChanges();
+
+                result = checkinHistory;
             }
             catch (Exception ex)
             {
@@ -152,26 +154,57 @@ namespace Sale.Check.In.WebApp.Managers
         }
 
         /// <summary>
-        /// Get Checkin Histories
+        /// Get check In histories
         /// </summary>
-        /// <returns> Checkin History List</returns>
-        public async Task<List<CheckinHistory>> GetCheckinHistories(int userId)
+        /// <param name="sortFiled"></param>
+        /// <param name="isOrderByAsc"></param>
+        /// <param name="page"></param>
+        /// <param name="limit"></param>
+        /// <returns></returns>
+        public async Task<ListCollectionCheckInHistoriesModel> GetCheckInHistories(int userId, string sortFiled, bool isOrderByAsc, int page, int limit)
         {
-            _logger.LogInfo("Get Checkin Histories Start.");
-            var result = new List<CheckinHistory>();
+            _logger.LogInfo("GetCheckInHistories Start ");
             try
             {
-                var response = await _context.CheckinHistory.Where(t => t.User_Id == userId).ToListAsync();
-                result = response;
-                result.OrderByDescending(e => e.CreatedDate);
+                IQueryable<CheckinHistory> result;
+                if(isOrderByAsc)
+                {
+                    result = _context.CheckinHistory.Where(t => t.User_Id == userId).OrderBy(e => e.CreatedDate);
+                }else
+                {
+                    result = _context.CheckinHistory.Where(t => t.User_Id == userId).OrderByDescending(e => e.CreatedDate);
+                }
+           
+                return await result.ToListCollectionCheckInHistoriesPagingAsync(sortFiled, page, limit, isOrderByAsc);
             }
             catch (Exception ex)
             {
-                _logger.LogError("Get Checkin Histories" + ex);
+                _logger.LogError("GetCheckInHistories " + ex);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Get Latest CheckIn 
+        /// </summary>
+        /// <returns> latest check in </returns>
+        public async Task<CheckinHistory> GetLatestCheckIn()
+        {
+            _logger.LogInfo("Get Latest CheckIn Start.");
+            var result = new CheckinHistory();
+            try
+            {
+                result = await _context.CheckinHistory.OrderByDescending(e => e.CreatedDate).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Get Latest CheckIn " + ex);
             }
 
-            _logger.LogInfo("Get Checkin Histories End.");
+            _logger.LogInfo("Get Latest CheckIn End.");
             return result;
         }
+
+
     }
 }

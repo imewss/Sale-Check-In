@@ -32,6 +32,8 @@
     </div>
 
     <button pButton style="border-radius: 8px;" type="button" label="ลงชื่อเข้าใช้" [disabled]="logInForm.invalid"
-      (click)="onValidateUser()"></button>
+      (click)="onValidateUser()">
+      <img *ngIf="isLoading" style="width: 24px;" src="../../assets/images/DualRing.gif" />
+    </button>
   </form>
 </div>
