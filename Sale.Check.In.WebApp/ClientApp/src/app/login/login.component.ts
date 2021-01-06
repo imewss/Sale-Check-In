@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
         this._router.navigate(['/CheckIn']);
       }, err => {
         this.invalidLogin = true;
+        this.isLoading = false;
       });
   }
 

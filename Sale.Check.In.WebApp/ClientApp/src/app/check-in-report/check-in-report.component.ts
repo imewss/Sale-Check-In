@@ -19,9 +19,10 @@ export class CheckInReportComponent implements OnInit {
   totalRecords = 0;
   sortField = 'CreatedDate';
   sortOrder = 1;
+  isOrderByAsc = false;
 
   constructor(private _http: HttpClient,
-              private _sanitizer: DomSanitizer) { }
+    private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.initList();
@@ -58,20 +59,25 @@ export class CheckInReportComponent implements OnInit {
     let userId = localStorage.getItem('userId');
     let sortField = this.getSortField();
     this.sortOrder == 1
+    if (this.isOrderByAsc) {
+       this.isOrderByAsc = false;
+    }else {
+      this.isOrderByAsc = true;
+    }
     let url = 'api/CheckIn/CheckInHistories?page=' + this.pageIndex +
       '&limit=' + this.pageSize +
       '&userId=' + userId +
       '&sortField=' + sortField +
-      '&isOrderByAsc=' + this.sortOrder;
+      '&isOrderByAsc=' + this.isOrderByAsc;
 
     this._http.get<any>(url).subscribe((res) => {
       if (res) {
         this.checkInHistory = res;
 
         this.checkInHistory.collection.forEach(element => {
-        element.imageFormatted = this._sanitizer.sanitize(SecurityContext.HTML, this._sanitizer.bypassSecurityTrustHtml('data:' + element.mimeType + ';base64,'
-        + element.receiptFile));
-        element.createdDateFormatted = this.getDisplayDateTime(element.createdDate, 'd MMM yyyy hh:mm', 'th_TH');
+          element.imageFormatted = this._sanitizer.sanitize(SecurityContext.HTML, this._sanitizer.bypassSecurityTrustHtml('data:' + element.mimeType + ';base64,'
+            + element.receiptFile));
+          element.createdDateFormatted = this.getDisplayDateTime(element.createdDate, 'd MMM yyyy hh:mm', 'th_TH');
         });
 
 

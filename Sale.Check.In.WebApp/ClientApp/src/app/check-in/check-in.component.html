@@ -149,14 +149,13 @@
 
     <div class="p-col-12">
       <span class="p-float-label">
-        <textarea name="note" pInputTextarea [rows]="5" [cols]="38" formControlName="note"></textarea>
+        <textarea name="note" pInputTextarea [rows]="5" [cols]="35" formControlName="note"></textarea>
         <label class="p-col-fixed" style="width:150px;" for="note">หมายเหตุ</label>
       </span>
     </div>
 
     <div style="text-align: center;">
-      <button style="border-radius: 8px;" pButton type="button" label="Check in" (click)="onCheckIn()"></button>
-      <!-- [disabled]="checkInForm.invalid" -->
+      <button style="border-radius: 8px;" pButton type="button" label="Check in" (click)="onCheckIn()" [disabled]="checkInForm.invalid"></button>
     </div>
   </form>
 </div>
