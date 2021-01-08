@@ -46,9 +46,9 @@ namespace Template
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
 
-                        ValidIssuer = "https://localhost:44388",
-                        ValidAudience = "https://localhost:44388",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+                        ValidIssuer = Configuration.GetValue<string>("JWT:ValidIssuer"),
+                        ValidAudience = Configuration.GetValue<string>("JWT:ValidAudience"),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetValue<string>("JWT:SecretKey")))
                     };
                 });
 

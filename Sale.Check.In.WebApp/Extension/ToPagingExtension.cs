@@ -32,18 +32,7 @@ namespace Sale.Check.In.WebApp.Extension
                 var totalItemCount = await query.CountAsync();
 
                 var totalPage = ((totalItemCount - 1) / limit) + 1;
-                var skip = (page - 1) * limit;
-               
-                //if (isOrderbyAsc)
-                //{
-                //    res = query.OrderBy(orderExpression).Skip(skip).Take(limit);
-                //}
-                //else
-                //{
-                //    res = query.OrderByDescending(orderExpression).Skip(skip).Take(limit);
-
-                //}
-              
+             
                 result.PageIndex = page;
                 result.TotalPage = totalPage;
                 foreach (var item in query)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Sale.Check.In.WebApp.Interface;
 using Sale.Check.In.WebApp.Models;
@@ -21,16 +22,18 @@ namespace Sale.Check.In.WebApp.Controllers
     {
         private readonly ILoggerService _logger;
         private readonly IUserManager _userManager;
+        public readonly IConfiguration _configuration;
 
         /// <summary>
         /// Auth controller
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="userManager"></param>
-        public AuthController(ILoggerService logger, IUserManager userManager)
+        public AuthController(ILoggerService logger, IUserManager userManager, IConfiguration configuration)
         {
             _logger = logger;
             _userManager = userManager;
+            _configuration = configuration;
         }
 
         /// <summary>
@@ -52,12 +55,13 @@ namespace Sale.Check.In.WebApp.Controllers
             var userId = await _userManager.GetUserId(loginModel);
             if (result)
             {
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+               
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetValue<string>("JWT:SecretKey")));
                 var signigCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                 var tokenOptions = new JwtSecurityToken(
-                    issuer: "https://localhost:44388",
-                    audience: "https://localhost:44388",
+                    issuer: _configuration.GetValue<string>("JWT:ValidIssuer"),
+                    audience: _configuration.GetValue<string>("JWT:ValidAudience"),
                     claims: new List<Claim>(),
                     expires: DateTime.Now.AddHours(1),
                     signingCredentials: signigCredentials

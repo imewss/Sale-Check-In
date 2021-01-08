@@ -13,13 +13,14 @@ import { formatDate } from '@angular/common';
 export class CheckInReportComponent implements OnInit {
   checkInHistory: CheckInHistoryListModel;
   cols: any[];
-  rowsPerPageOptions: Array<number> = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+  rowsPerPageOptions: Array<number> = [5, 20, 30, 40, 50];
   pageIndex = 1;
-  pageSize = 50;
+  pageSize = 5;
   totalRecords = 0;
   sortField = 'CreatedDate';
   sortOrder = 1;
   isOrderByAsc = false;
+
 
   constructor(private _http: HttpClient,
     private _sanitizer: DomSanitizer) { }
@@ -82,7 +83,7 @@ export class CheckInReportComponent implements OnInit {
 
 
         this.totalRecords = this.pageSize * res.totalPage;
-        //  this.updateLocation();
+
       }
     }, err => {
       console.log('err', err);

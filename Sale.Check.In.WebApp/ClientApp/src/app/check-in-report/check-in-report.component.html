@@ -21,15 +21,14 @@
                [value]="checkInHistory.collection"
                [lazy]="true"
                (onLazyLoad)="loadData($event)"
-               [paginator]="true"
                [rows]="pageSize"
+               [rowsPerPageOptions]="rowsPerPageOptions"
                [first]="(pageIndex - 1) * pageSize"
                [totalRecords]="totalRecords"
                [showCurrentPageReport]="true"
                [currentPageReportTemplate]="'Page {currentPage} of {totalPages}'"
                selectionMode="single"
-               [autoLayout]="true"
-               styleClass="p-datatable-responsive-demo">
+               >
         <ng-template pTemplate="header" let-columns>
           <tr style="text-align: left;">
             <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="text-align: center">

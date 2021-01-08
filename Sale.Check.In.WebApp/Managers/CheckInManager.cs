@@ -121,7 +121,7 @@ namespace Sale.Check.In.WebApp.Managers
             var result = new List<District>();
             try
             {
-                result = await _context.District.Where(t => t.District_Id == districtId).ToListAsync();
+                result = await _context.District.Where(t => t.Amphur_id == districtId).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -167,7 +167,8 @@ namespace Sale.Check.In.WebApp.Managers
             try
             {
                 IQueryable<CheckinHistory> result;
-                if(isOrderByAsc)
+                var skip = (page - 1) * limit;
+                if (isOrderByAsc)
                 {
                     result = _context.CheckinHistory.Where(t => t.User_Id == userId).OrderBy(e => e.CreatedDate);
                 }else
